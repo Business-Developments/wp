@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send Form Data to WhatsApp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        input, textarea {
+            margin: 10px 0;
+            padding: 10px;
+            width: 300px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #25d366;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Contact Us via WhatsApp</h2>
+
+    <form id="contactForm">
+        <input type="text" id="name" placeholder="Your Name" required><br>
+        <input type="text" id="phone" placeholder="Your Phone Number" required><br>
+        <textarea id="message" placeholder="Your Message" required></textarea><br>
+        <button type="submit">Send to WhatsApp</button>
+    </form>
+
+    <script>
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            var name = document.getElementById('name').value;
+            var phone = document.getElementById('phone').value;
+            var message = document.getElementById('message').value;
+
+            // Create WhatsApp URL with pre-filled message
+            var whatsappMessage = `https://api.whatsapp.com/send?phone=919382085005&text=
+                Name: ${encodeURIComponent(name)}%0A
+                Phone: ${encodeURIComponent(phone)}%0A
+                Message: ${encodeURIComponent(message)}`;
+
+            // Open WhatsApp with the message
+            window.open(whatsappMessage, '_blank');
+        });
+    </script>
+
+</body>
+</html>
